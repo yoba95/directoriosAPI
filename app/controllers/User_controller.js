@@ -7,7 +7,6 @@ module.exports = {
 //Login-----------------------------------------------------------------------
 async SignIn(req, res) {
     let { email, password } = req.body;
-
     // Buscar usuario
 await db.user.findOne({
     where: {
@@ -27,11 +26,11 @@ await db.user.findOne({
                 expiresIn: authConfig.expires
             });
 
-            res.json({
+           /* res.json({
                 user: user,
                 token: token
-            })
-
+            })*/
+            return res.status(200).json({user: user,token: token}); 
         } else {
 
             // Unauthorized Access

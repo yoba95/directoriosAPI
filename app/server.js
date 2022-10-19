@@ -27,13 +27,6 @@ app.listen(PORT, function(){
     } catch (error) {
      console.log('Se ha producido un error', error)
     }
-     /*  try {
-    console.log('servidor corriendo en el puerto: ' +PORT);    
-    conect.sequelize.sync({ alter:true}).then(() => {
-        console.log("Se ha establecido la conexión");
-    }).catch(error => {
-        console.log('Se ha producido un error', error)
-    })*/
 })
 
 
