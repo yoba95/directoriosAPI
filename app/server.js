@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const conect = require('./models/index'); 
 const { validationResult } = require('express-validator');
-// Log requests to the console.
+const cors = require('cors');
 const PORT = parseInt(process.env.PORT) || 7000;
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use(require('./routers/User_routes'));
 app.use(require('./routers/Role_routes'));

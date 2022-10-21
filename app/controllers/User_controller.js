@@ -6,7 +6,8 @@ module.exports = {
 
 //Login-----------------------------------------------------------------------
 async SignIn(req, res) {
-    let { email, password } = req.body;
+    try {
+        let { email, password } = req.body;
     // Buscar usuario
 await db.user.findOne({
     where: {
@@ -25,11 +26,6 @@ await db.user.findOne({
             let token = jwt.sign({ user: user }, authConfig.secret, {
                 expiresIn: authConfig.expires
             });
-
-           /* res.json({
-                user: user,
-                token: token
-            })*/
             return res.status(200).json({user: user,token: token}); 
         } else {
 
@@ -37,12 +33,10 @@ await db.user.findOne({
             res.status(401).json({ msg: "Contraseña incorrecta" })
         }
 
+    }})
+    } catch (error) {
+         res.status(500).json(err);
     }
-
-}).catch(err => {
-    res.status(500).json(err);
-})
-
 },
 //Crear cuenta --------------------------------------------------------------------------
     async createCou(req, res) {
