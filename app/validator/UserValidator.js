@@ -18,4 +18,14 @@ body('oficina').trim().notEmpty().exists(),
     validateResult(req, res, next)
 }
 ]
-module.exports = { validateCreate }
+
+const bodyLoginValidator = [
+        body('email', "Formato incorrecto")
+            .trim()
+            .isEmail()
+            .normalizeEmail(),
+        body( 'password', "Minimo 6 caracteres").trim().isLength({ min: 6}),
+        (req, res, next)=> {validateResult(req,res,next)}
+    ];
+
+module.exports = { validateCreate, bodyLoginValidator }
