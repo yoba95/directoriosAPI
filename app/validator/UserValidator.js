@@ -23,8 +23,9 @@ const bodyLoginValidator = [
         body('email', "Formato incorrecto")
             .trim()
             .isEmail()
-            .normalizeEmail(),
-        body( 'password', "Minimo 6 caracteres").trim().isLength({ min: 6}),
+            .normalizeEmail()
+            .notEmpty(),
+        body( 'password', "Minimo 6 caracteres").trim().isLength({ min: 6}).notEmpty(),
         (req, res, next)=> {validateResult(req,res,next)}
     ];
 
