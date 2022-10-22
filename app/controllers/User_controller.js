@@ -26,8 +26,8 @@ await db.user.findOne({
             let token = jwt.sign({ user: user }, authConfig.secret, {
                 expiresIn: authConfig.expires
             });
-            //return res.status(200).json({user: user,token: token}); 
-            return res.status(200).json({token: token});
+            return res.status(200).json({user: user,token: token}); 
+         //  return res.status(200).json({token: token});
         } else {
 
             // Unauthorized Access
