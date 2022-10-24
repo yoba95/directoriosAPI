@@ -36,7 +36,7 @@ await db.user.findOne({
 
     }})
     } catch (error) {
-         res.status(500).json(err);
+         res.status(500).json(error);
     }
 },
 //Crear cuenta --------------------------------------------------------------------------

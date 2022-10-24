@@ -25,8 +25,7 @@ const bodyLoginValidator = [
             .isEmail()
             .normalizeEmail()
             .notEmpty(),
-        body( 'password', "Minimo 6 caracteres").trim().isLength({ min: 6}).notEmpty(),
+        body( 'password', "Minimo 6 caracteres").trim().isLength({ min: 6}),
         (req, res, next)=> {validateResult(req,res,next)}
     ];
-
 module.exports = { validateCreate, bodyLoginValidator }

@@ -5,8 +5,9 @@ const validateResult = (req, res, next) => {
         validationResult(req).throw()
         return next()
     } catch (err) {
-        res.status(403)
-        res.send({ errors: err.array() })
+       res.status(400)
+       res.send({ errors: err.array() })
+        
     }
 }
 //cambios de prueba
