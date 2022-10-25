@@ -2,7 +2,7 @@ const { check,body } = require('express-validator') //TODO <---
 const { validateResult } = require('../validator/validateHelper')
 
 const validateCreate = [ //TODO:name, age, email
-body('username').trim().notEmpty().exists(),
+//body('username').trim().notEmpty().exists(),
 body('password').trim().notEmpty().exists(),
 body('email', 'El email para el usuario es incorrecto').trim().isEmail().normalizeEmail(),
 //body('roleId').trim().isEmpty().isNumeric(),
