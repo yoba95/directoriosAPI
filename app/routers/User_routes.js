@@ -20,7 +20,7 @@ router.get('/api/users/employee',auth.validateToken,validate.isAdmin,UserControl
 router.get('/api/users/roles',auth.validateToken,validate.isAdmin,UserController.allUserRole);
 router.get('/api/user-data/:id',auth.validateToken,validate.isAdmin,UserController.getUser);
 
-router.post('/api/users/signin',bodyLoginValidator,UserController.SignIn);
+router.post('/api/users/signin',UserController.SignIn);
 router.post('/api/users/logout', UserController.logout);
 router.post('/api/users/signup',validateCreate,validate.checkExisted,UserController.createCou);
 
