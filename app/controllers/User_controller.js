@@ -46,12 +46,11 @@ await db.user.findOne({
         let contraseña = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
 
         //varialbles
-        const {username, email,} = req.body
+        const {email,} = req.body
         const {full_name, number_phone, oficina} = req.body
         //const role = req.role;
         let idrole = req.role
         await db.user.create({
-            username,
             email,
             password: contraseña,
             roleId: idrole.id,

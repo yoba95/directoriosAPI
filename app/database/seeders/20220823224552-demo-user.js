@@ -4,14 +4,14 @@ const authConfig = require('../../../config/auth');
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('users', [{
-      username: 'admin',
+     //username: 'admin',
       email: 'admin@doe.com',
       password: bcrypt.hashSync("123456", +authConfig.rounds),
       roleId: 1,
       
     },
     {
-      username: 'will smith',
+     // username: 'will smith',
       email: 'will@smith.com',
       password: bcrypt.hashSync("123456", +authConfig.rounds),
       roleId: 2,
