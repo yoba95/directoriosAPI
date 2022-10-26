@@ -72,7 +72,7 @@ await db.user.findOne({
            });
 
            res.json({
-               user: user,
+            //  user: user,
                token: token,
            });
 
