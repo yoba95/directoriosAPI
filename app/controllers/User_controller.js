@@ -13,11 +13,12 @@ await db.user.findOne({
     where: {
         email: email
     },
-  // include: [ 'role']
+  //include: [ 'role']
+// include:['employee']
 }).then(user => {
 
     if (!user) {
-        res.status(404).json({ msg: "Usuario con este correo no encontrado" });
+        res.status(401).json({ msg: "Usuario con este correo no encontrado" });
     } else {
 
         if (bcrypt.compareSync(password, user.password) ) {
@@ -71,7 +72,7 @@ await db.user.findOne({
                expiresIn: authConfig.expires
            });
 
-           res.json({
+           res.json.status(201)({
                user: user,
                token: token,
            });
@@ -86,12 +87,12 @@ async allUserRole(req, res) {
     let user = await db.user.findAll({
         include: [ 'role' ]
     })
-    res.json(user) 
+    res.status(200).json(user) 
 },
 //trae todos los usuarios
 async allUsers(req, res) {
 let user = await db.user.findAll()
-res.json(user) 
+res.status(200).json([user]) 
 },
 //Usuario + sus datos como empleado
 async allUserEmpleado(req, res) {
@@ -100,7 +101,7 @@ async allUserEmpleado(req, res) {
             include: ['employee']
         }
     )
-    res.json(emp) 
+    res.status(200).json(emp) 
 
 },
 //obtiene al usuario y sus datos ------------------------------
@@ -111,7 +112,7 @@ async getUser(req, res) {
         });
 
         if(!user) {
-            res.status(404).json({ msg: "El usuario no ha sido encontrado" });
+            res.status(401).json({ msg: "El usuario no ha sido encontrado" });
         } else {
             res.json(user);
         }
@@ -125,11 +126,11 @@ let users = await db.user.findOne({
     where: {id}
 });
     if(!users) {
-        res.status(404).json({ msg: "Usuario no encontrado" });
+        res.status(401).json({ msg: "Usuario no encontrado" });
     } else {
         users.set(req.body)
         await users.save(users)
-        res.json(users)        
+        res.status(200).json(users)        
     }
 },
 //eliminar usuario-------------------------------------------------
@@ -141,13 +142,13 @@ async deleteUser(req, res) {
     //let iduser = user.id
     
     if(!user) {
-        res.status(404).json({ msg: "El usuario no ha sido encontrado" });
+        res.status(401).json({ msg: "El usuario no ha sido encontrado" });
     } else {
        
         //res.json({user, empleado})
         empleado.destroy();
         user.destroy().then(user=> {
-        res.json({ msg: "El usuario ha sido eliminado "});
+        res.status(200).json({ msg: "El usuario ha sido eliminado "});
         });
 
     }
