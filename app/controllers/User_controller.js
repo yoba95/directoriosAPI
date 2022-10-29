@@ -72,7 +72,7 @@ await db.user.findOne({
                expiresIn: authConfig.expires
            });
 
-           res.json.status(201)({
+           res.status(200).json({
                user: user,
                token: token,
            });
@@ -92,7 +92,9 @@ async allUserRole(req, res) {
 //trae todos los usuarios
 async allUsers(req, res) {
 let user = await db.user.findAll()
-res.status(200).json([user]) 
+res.status(200).json({users:user }) ;
+
+ //res.status(200).json({user: [user] });
 },
 //Usuario + sus datos como empleado
 async allUserEmpleado(req, res) {
