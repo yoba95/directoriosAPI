@@ -10,10 +10,10 @@ async createRegion(req, res) {
         createdAt: new Date(),
         updatedAt: new Date()
     })
-    return res.status(201).json(region);
+    return res.status(200).json(region);
     } catch (error) {
         console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json("error del servidor"); 
     }
    
 },
@@ -21,10 +21,10 @@ async createRegion(req, res) {
 async allRegion(req,res){
     try {
         const regiones = await db.region.findAll();
-    return res.status(202).json(regiones);
+    return res.status(200).json({regiones :regiones});
     } catch (error) {
          console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json( "error del servidor"); 
     }
     
 },
@@ -35,11 +35,11 @@ async allRegionId (req, res){
       const region = await db.region.findByPk(id); 
       
       if(!region){
-        return res.status(404).json({error: "La Region No Existe"});
-      } else return res.status(203).json(region);
+        return res.status(404).json( "La Region No Existe");
+      } else return res.status(200).json({region: region});
     } catch (error) {
          console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json( "error del servidor"); 
     }
 },
 
@@ -53,7 +53,7 @@ async updateRegion (req, res){
         const region = await db.region.findByPk(id);
 
         if(!region){
-        return res.status(404).json({error: "La Region No Existe"});
+        return res.status(404).json( "La Region No Existe");
       } else 
 
         region.nameRegion = nameRegion;
@@ -63,7 +63,7 @@ async updateRegion (req, res){
 
     } catch (error) {
          console.log(error);
-        return res.status(500).json({error: "error del servidor"});
+        return res.status(500).json( "error del servidor");
     }
 
 },
@@ -75,17 +75,17 @@ async deleteRegion (req, res){
     try {
         const regionss = await db.region.findByPk(id);
          if (!regionss){
-            return res.status(404).json({error: "No Existe La Region"});
+            return res.status(404).json( "No Existe La Region");
          } else{
             await db.region.destroy({
             where:{id}
         });
-        return res.status(201).json({error: "La Region Ha Sido Eliminado "});
+        return res.status(201).json( "La Region Ha Sido Eliminado ");
          }
         
     } catch (error) {
           console.log(error);
-            return res.status(500).json({error: "error del servidor"}); 
+            return res.status(500).json( "error del servidor"); 
     }
 },
 
@@ -98,10 +98,10 @@ async getRegioMunicipios(req, res){
             include: ['region']
         }) ;
         
-        return res.status(202).json(municipios);
+        return res.status(200).json({municipios:municipios});
     } catch (error) {
         console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json( "error del servidor"); 
     }
 }
 

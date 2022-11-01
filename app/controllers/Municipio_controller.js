@@ -10,10 +10,10 @@ module.exports = {
             regionId,
             createdAt: new Date(),
             updatedAt: new Date()})
-            return res.status(201).json({municipio}); 
+            return res.status(200).json(municipio); 
         } catch (error) {
             console.log(error);
-            return res.status(500).json({error: "error del servidor"}); 
+            return res.status(500).json( "error del servidor"); 
         }
 },
 
@@ -22,10 +22,10 @@ module.exports = {
             const municipios = await db.municipio.findAll({
                 include: ['region']
             });
-            return res.status(202).json(municipios)
+            return res.status(200).json({municipios:municipios})
         } catch (error) {
             console.log(error);
-            return res.status(500).json({error: "error del servidor"}); 
+            return res.status(500).json( "error del servidor"); 
         }
    
 },
@@ -39,12 +39,12 @@ module.exports = {
             });
 
             if(!municipio) {
-                return res.status(404).json({ error: "El Municipio No Existe"});
+                return res.status(404).json( "El Municipio No Existe");
             }else 
-            return res.status(203).json(municipio);
+            return res.status(200).json({mumicipio:municipio});
         } catch (error) {
             console.log(error);
-            return res.status(500).json({error: "error del servidor"}); 
+            return res.status(500).json( "error del servidor"); 
         }
     //**otra forma de hacerlo*/ */
     /*
@@ -67,7 +67,7 @@ module.exports = {
             include: ['region']
          });
             if (!municipio) {
-                 return res.status(404).json({error: "El Municipio No Existe"});
+                 return res.status(404).json( "El Municipio No Existe");
             } else 
             
             municipio.set(req.body);
@@ -77,7 +77,7 @@ module.exports = {
 
         } catch (error) {
             console.log(error);
-            return res.status(500).json({error: "error del servidor"}); 
+            return res.status(500).json("error del servidor"); 
         }
 },
 
@@ -86,7 +86,7 @@ module.exports = {
         try {
             const municipio = await db.municipio.findByPk(id);
             if (!municipio) {
-                 return res.status(404).json({error: "No Existe El Municipio"});
+                 return res.status(404).json("No Existe El Municipio");
             } else {
                 await db.municipio.destroy({
                 where:{
@@ -94,12 +94,12 @@ module.exports = {
                 }
             });
             
-            return res.status(201).json({error: "El municipio ha sido eliminado "});
+            return res.status(201).json( "El municipio ha sido eliminado ");
             }
             
         } catch (error) {
             console.log(error);
-            return res.status(500).json({error: "error del servidor"}); 
+            return res.status(500).json( "error del servidor"); 
         }
 
 },
@@ -111,11 +111,12 @@ async getMunicipioLocalidades(req, res){
             where: {municipioId: id},
             include: ['municipio']
         }) ;
-        return res.status(202).json(localidades);
+        return res.status(200).json({localidades:localidades});
     
     } catch (error) {
         console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json("error del servidor"); 
+       // return res.status(500).json({error: "error del servidor"}); 
     }
 }
 

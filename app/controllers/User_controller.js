@@ -18,7 +18,7 @@ await db.user.findOne({
 }).then(user => {
 
     if (!user) {
-        res.status(401).json({ msg: "Usuario con este correo no encontrado" });
+        res.status(401).json( "Usuario con este correo no encontrado" );
     } else {
 
         if (bcrypt.compareSync(password, user.password) ) {
@@ -32,7 +32,7 @@ await db.user.findOne({
         } else {
 
             // Unauthorized Access
-            res.status(401).json({ msg: "Contraseña incorrecta" })
+            res.status(401).json("Contraseña incorrecta" )
         }
 
     }})
@@ -92,9 +92,9 @@ async allUserRole(req, res) {
 //trae todos los usuarios
 async allUsers(req, res) {
 let user = await db.user.findAll()
+//!! DE ESTA MANERA SE TIENEN QUE ENVIAR LOS DATOS DE RESPUESTA PARA PODER MAPEARLOS EN FLUTTER
 res.status(200).json({users:user }) ;
 
- //res.status(200).json({user: [user] });
 },
 //Usuario + sus datos como empleado
 async allUserEmpleado(req, res) {
@@ -103,7 +103,7 @@ async allUserEmpleado(req, res) {
             include: ['employee']
         }
     )
-    res.status(200).json(emp) 
+    res.status(200).json({employees:emp}) 
 
 },
 //obtiene al usuario y sus datos ------------------------------
@@ -114,9 +114,10 @@ async getUser(req, res) {
         });
 
         if(!user) {
-            res.status(401).json({ msg: "El usuario no ha sido encontrado" });
+            //!!MANERA CORRECTA DE MANDAR EL ERROR PARA MOSTRARLO EN FLUTTER
+            res.status(401).json("El usuario no ha sido encontrado" );
         } else {
-            res.json(user);
+            res.status(200).json({user: [user]});
         }
     },
 
@@ -128,7 +129,7 @@ let users = await db.user.findOne({
     where: {id}
 });
     if(!users) {
-        res.status(401).json({ msg: "Usuario no encontrado" });
+        res.status(401).json( "Usuario no encontrado" );
     } else {
         users.set(req.body)
         await users.save(users)
@@ -144,13 +145,13 @@ async deleteUser(req, res) {
     //let iduser = user.id
     
     if(!user) {
-        res.status(401).json({ msg: "El usuario no ha sido encontrado" });
+        res.status(401).json( "El usuario no ha sido encontrado" );
     } else {
        
         //res.json({user, empleado})
         empleado.destroy();
         user.destroy().then(user=> {
-        res.status(200).json({ msg: "El usuario ha sido eliminado "});
+        res.status(200).json( "El usuario ha sido eliminado ");
         });
 
     }

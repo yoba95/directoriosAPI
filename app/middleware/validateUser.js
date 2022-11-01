@@ -27,7 +27,7 @@ const db = require('../models');
                     }
     
                 } else {
-                    res.status(401).json({ msg: "El usuario ya existe" })
+                    res.status(400).json( "El usuario ya existe" )
                 }
             
             }).catch(err => {
@@ -51,7 +51,7 @@ const db = require('../models');
                     //res.status(500).json('Eres admin'); 
                 }
                 else {
-                    res.status(401).json({msg: "No estas autorizado para ver esta informacion, requieres ser administrador"}); 
+                    res.status(400).json( "No estas autorizado para ver esta informacion, requieres ser administrador"); 
                 }
                 
             }).catch(err => {
@@ -72,7 +72,7 @@ const db = require('../models');
                     //res.status(500).json('Eres admin'); 
                 }
                 else {
-                    res.status(401).json({msg: "No estas autorizado para ver esta informacion, requieres ser de un role"}); 
+                    res.status(400).json("No estas autorizado para ver esta informacion, requieres ser de un role"); 
                 }
                 
             }).catch(err => {
@@ -96,7 +96,7 @@ async checkExistedSchool(req, res, next){
                 //res.status(401).json({ msg: "La escuela con este correo no existe" })
                 
             } else {
-                res.status(401).json({ msg: "Ya se encuentra registrada una escuela con este correo" })
+                res.status(400).json( "Ya se encuentra registrada una escuela con este correo" )
             }
         
         }).catch(err => {
