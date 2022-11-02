@@ -16,7 +16,7 @@ await db.user.findOne({
         email: email
     },
   //include: [ 'role'],
-  include:['employee']
+ //include:['employee']
 }).then(user => {
 
     if (!user) {
@@ -29,7 +29,7 @@ await db.user.findOne({
             let token = jwt.sign({ user: user }, authConfig.secret, {
                 expiresIn: authConfig.expires
             });
-            generateCookieToken(user.id, res);
+          //  generateCookieToken(user.id, res);
            return res.status(200).json({user:user, token:token}); 
            
        //   return res.status(200).json({token: token});
