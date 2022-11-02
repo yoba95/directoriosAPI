@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../config/auth');
-const db = require('../models'); 
+const db = require('../models');
+const cookieParser = require('cookie-parser');
+const expireIn = parseInt(process.env.AUTH_EXPIRES);
 module.exports = { 
 
     async generarToken(req, res, next){
@@ -8,6 +10,12 @@ module.exports = {
         let token = jwt.sign({ user: user }, authConfig.secret, {
             expiresIn: authConfig.expires
         });
+
+       /* res.cookie("refreshToken", token, {
+            httpOnly: true,
+            secure:true,
+            expires: new Date(Date.now() + expiresIn * 1000)
+        })*/
     },
     async validateToken(req, res, next) {
 
@@ -41,5 +49,20 @@ module.exports = {
         })
     }
 
-}
+},
+  async generateCookieToken( id, res){
+ try {
+    const cookieToken = jwt.sign({ id }, authConfig.secret, {
+            expiresIn: authConfig.expires
+        });
+        res.cookie("refreshToken", cookieToken, {
+            httpOnly: true,
+            secure:true,
+            expires: new Date(Date.now() + expireIn * 1000)
+        })
+ } catch (error) {
+    console.log(error)
+ }
+        
+    }
 }

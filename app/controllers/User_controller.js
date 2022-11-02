@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../config/auth'); 
+const { generateCookieToken } = require('../middleware/auth');
 const db = require('../models'); 
 module.exports = {
 
@@ -13,8 +15,8 @@ await db.user.findOne({
     where: {
         email: email
     },
-  //include: [ 'role']
-// include:['employee']
+  //include: [ 'role'],
+  include:['employee']
 }).then(user => {
 
     if (!user) {
@@ -27,7 +29,9 @@ await db.user.findOne({
             let token = jwt.sign({ user: user }, authConfig.secret, {
                 expiresIn: authConfig.expires
             });
-           return res.status(200).json({user: user,token: token}); 
+            generateCookieToken(user.id, res);
+           return res.status(200).json({user:user, token:token}); 
+           
        //   return res.status(200).json({token: token});
         } else {
 
@@ -36,6 +40,7 @@ await db.user.findOne({
         }
 
     }})
+    
     } catch (error) {
          res.status(500).json(error);
     }
@@ -159,7 +164,7 @@ async deleteUser(req, res) {
 //cerrar sesion
     async logout(req, res){
         const { token } = req.user;
-
+        res.clearCookie('refreshToken')
+        res.json({ok: true})
     }
 }
-
