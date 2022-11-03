@@ -72,12 +72,12 @@ async allSchool(req,res){
             //'usuario'
          ]
     })
-    return res.status(201).json({school});
+    return res.status(200).json({schols:school});
     } catch (error) {
        console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json("error del servidor"); 
     }
-    
+   
 },
 
 async allSchoolId (req, res){
