@@ -54,7 +54,7 @@ async createSchool(req, res){
       }
  
     );
-    return res.status(201).json({school});
+    return res.status(200).json({schol:school});
     } catch (error) {
         console.log(error);
         return res.status(500).json("error del servidor"); 
