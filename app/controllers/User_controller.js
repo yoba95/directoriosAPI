@@ -15,9 +15,8 @@ await db.user.findOne({
     where: {
         email: email
     },
-   
   //include: [ 'role'],
- include:['employee']
+ include:[{employee:'employee'}]
 }).then(user => {
 
     if (!user) {
