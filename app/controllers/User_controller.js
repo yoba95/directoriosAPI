@@ -16,8 +16,8 @@ await db.user.findOne({
         email: email
     },
   include: [ {
-model : db.employee,
-    as: "employee",
+    model : db.employee,
+    
     attributes: ['fullname','oficina'],
   }
     
