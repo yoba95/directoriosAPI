@@ -22,7 +22,8 @@ await db.user.findOne({
   }
    
   ],*/
-  include: [ { all: true } ]
+  include:['emplooye']
+ //include: [ { all: true } ]
 }).then(user => {
 
     if (!user) {
