@@ -23,8 +23,6 @@ await db.user.findOne({
    
   ],*/
 
-     include: [ 'employee' ]
-
 }).then(user => {
 
     if (!user) {
