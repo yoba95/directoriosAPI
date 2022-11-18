@@ -8,7 +8,8 @@ const RegionController = require('../controllers/Region_controller');
 //prueba de fina¿dall user con roles y roles con users
 const validate = require('../middleware/validateUser');
 
-router.post('/api/v1/region',validate.isAdmin,regionValidator.bodyRegionValidator,RegionController.createRegion);
+//router.post('/api/v1/region',validate.isAdmin,regionValidator.bodyRegionValidator,RegionController.createRegion);
+router.post('/api/v1/region',regionValidator.bodyRegionValidator,RegionController.createRegion);
 router.get('/api/v1/regiones', RegionController.allRegion);
 router.get('/api/v1/region/:id',RegionController.allRegionId);
 router.put('/api/v1/region/:id',validate.isAdmin,regionValidator.bodyRegionValidator, RegionController.updateRegion);
