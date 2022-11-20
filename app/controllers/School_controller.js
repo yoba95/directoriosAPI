@@ -68,11 +68,11 @@ async allSchool(req,res){
         let school = await db.school.findAll({
         include: [ {
             
-                association: db.school.associations.director,
-                include: [ 'supervisor' ],
+               //association: db.school.associations.director,
+               // include: [ 'supervisor' ],
                 
             
-           // all: true
+            all: true
         }
            //'usuario'
          ]
