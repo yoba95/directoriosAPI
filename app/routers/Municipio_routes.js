@@ -14,10 +14,11 @@ const validate = require('../middleware/validateUser');
 //PATCH/PUT      /api/municipio/:id                update 
 //DELETE         /api/v1/municipio/:id                remove 
 
-router.post('/api/v1/municipio',validate.isAdmin, municipioValidator.bodyMunicipioValidator, MunicipioController.createMunicipio);
+//router.post('/api/v1/municipio',validate.isAdmin, municipioValidator.bodyMunicipioValidator, MunicipioController.createMunicipio);
+router.post('/api/v1/municipio',municipioValidator.bodyMunicipioValidator, MunicipioController.createMunicipio);
 router.get('/api/v1/municipios',MunicipioController.allMunicipios);
 router.get('/api/v1/municipio/:id',MunicipioController.allMunicipioId);
-router.put('/api/v1/municipio/:id',validate.isAdmin, MunicipioController.updateMunicipio);
+router.put('/api/v1/municipio/:id', MunicipioController.updateMunicipio);
 router.delete('/api/v1/municipio/:id',validate.isAdmin, MunicipioController.deleteMunicipio);
 
 // ruta para traer todas las localides que le pertenecen a un municipio
