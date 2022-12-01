@@ -53,7 +53,7 @@ async updateRegion (req, res){
         const region = await db.region.findByPk(id);
 
         if(!region){
-        return res.status(404).json( "La Region No Existe");
+        return res.status(404).json( "La Region No no Existe");
       } else 
 
         region.nameRegion = nameRegion;
