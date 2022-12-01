@@ -12,7 +12,7 @@ const validate = require('../middleware/validateUser');
 router.post('/api/v1/region',regionValidator.bodyRegionValidator,RegionController.createRegion);
 router.get('/api/v1/regiones', RegionController.allRegion);
 router.get('/api/v1/region/:id',RegionController.allRegionId);
-router.put('/api/v1/region/:id',validate.isAdmin,regionValidator.bodyRegionValidator, RegionController.updateRegion);
+router.put('/api/v1/region/:id',regionValidator.bodyRegionValidator, RegionController.updateRegion);
 router.delete('/api/v1/region/:id',validate.isAdmin, RegionController.deleteRegion);
 
 router.get('/api/v1/regiones/:id/municipios', RegionController.getRegioMunicipios);
