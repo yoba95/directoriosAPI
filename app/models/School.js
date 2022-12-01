@@ -23,13 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     asentamiento: DataTypes.STRING,
     email: DataTypes.STRING,
     telefono: DataTypes.STRING,
-    userId: {
+   /* userId: {
         type: DataTypes.INTEGER,
         references: {
           model: 'users',
           key: 'id'
         }
-    },
+    },*/
     localidadId: {
       type: DataTypes.INTEGER,
       references: {
@@ -58,12 +58,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   School.associate = function(models) {
-    School.belongsTo(models.user, {
+  /*  School.belongsTo(models.user, {
       foreignKey: 'userId',
       targetKey: 'id',
       as: 'usuario'
     });
-
+*/
     School.belongsTo(models.localidad, {
       foreignKey: 'localidadId',
       targetKey: 'id',
