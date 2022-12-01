@@ -59,7 +59,7 @@ async updateRegion (req, res){
         region.nameRegion = nameRegion;
         await region.save();
 
-        return res.status(201).json({region});
+        return res.status(201).json(region);
 
     } catch (error) {
          console.log(error);
