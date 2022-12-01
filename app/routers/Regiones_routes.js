@@ -13,7 +13,7 @@ router.post('/api/v1/region',regionValidator.bodyRegionValidator,RegionControlle
 router.get('/api/v1/regiones', RegionController.allRegion);
 router.get('/api/v1/region/:id',RegionController.allRegionId);
 router.put('/api/v1/region/:id',regionValidator.bodyRegionValidator, RegionController.updateRegion);
-router.delete('/api/v1/region/:id',validate.isAdmin, RegionController.deleteRegion);
+router.delete('/api/v1/region/:id', RegionController.deleteRegion);
 
 router.get('/api/v1/regiones/:id/municipios', RegionController.getRegioMunicipios);
 

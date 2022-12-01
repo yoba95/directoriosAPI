@@ -9,7 +9,8 @@ const { checkExistedSchool } = require('../middleware/validateUser');
 const SchoolController = require('../controllers/School_controller');
 //prueba de fina¿dall user con roles y roles con users
 router.get('/api/v1/schools',SchoolController.allSchool);
-router.post('/api/v1/school',auth.validateToken,validateCreateSchool, checkExistedSchool, SchoolController.createSchool);
+//router.post('/api/v1/school',auth.validateToken,validateCreateSchool, checkExistedSchool, SchoolController.createSchool);
+router.post('/api/v1/school',validateCreateSchool, checkExistedSchool, SchoolController.createSchool);
 router.get('/api/v1/school/:id', SchoolController.allSchoolId);
 router.put('/api/v1/school/:id', SchoolController.updateSchool );
 router.delete('/api/v1/school/:id', SchoolController.deleteSchool);

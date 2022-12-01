@@ -19,7 +19,7 @@ router.post('/api/v1/municipio',municipioValidator.bodyMunicipioValidator, Munic
 router.get('/api/v1/municipios',MunicipioController.allMunicipios);
 router.get('/api/v1/municipio/:id',MunicipioController.allMunicipioId);
 router.put('/api/v1/municipio/:id', MunicipioController.updateMunicipio);
-router.delete('/api/v1/municipio/:id',validate.isAdmin, MunicipioController.deleteMunicipio);
+router.delete('/api/v1/municipio/:id', MunicipioController.deleteMunicipio);
 
 // ruta para traer todas las localides que le pertenecen a un municipio
 router.get('/api/v1/municipios/:id/localidades',MunicipioController.getMunicipioLocalidades);
