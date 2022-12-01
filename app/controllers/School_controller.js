@@ -13,6 +13,7 @@ async createSchool(req, res){
             email_school, telefono, localidadId} = req.body;
     const {name_director, sindicato, telephone, puesto, email_director,status, atencion} = req.body
     const {name_supervisor, telephone_supervisor,email_supervisor, recuperado, directorio_recuperado} = req.body
+    const {lat, long} = req.body;
             let iduser = req.user
     let school = await db.school.create({
         name_school,
@@ -28,6 +29,10 @@ async createSchool(req, res){
         createdAt: new Date(),
         updatedAt: new Date(),
         userId: iduser.id,
+        ubicacion:{
+            longitud:long,
+            latidud: lat,
+        },
         director: {
             name: name_director,
             sindicato,
@@ -46,7 +51,7 @@ async createSchool(req, res){
         } 
     },
     {
-        include: [{
+       include: ['ubicacion',{
           association: db.school.associations.director,
           include: [ 'supervisor' ],
           
@@ -66,6 +71,7 @@ async createSchool(req, res){
 async allSchool(req,res){
     try {
         let school = await db.school.findAll({
+            
         include: [ 
            'usuario','localidad','ubicacion', {
            // all: true,
@@ -94,9 +100,15 @@ try {
 
     const school = await db.school.findOne({
         where: {id},
-        include: [{
+        include: [
+            'ubicacion','usuario','localidad',{
+                association: db.school.associations.director,
+                include: [ 'supervisor' ]
+
+            }]
+       /* include: [{
             all: true
-        }]
+        }]*/
     });
 
     if(!school){

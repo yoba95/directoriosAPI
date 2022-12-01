@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
  Ubicacion.associate = function(models){
     Ubicacion.hasOne(models.school, {
       foreignKey: 'ubicacionId',
-      as: 'school'
+      key: 'id'
+     //as: 'school'
     });
   }
   return Ubicacion;
