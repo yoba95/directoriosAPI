@@ -3,11 +3,11 @@ const { validateResult } = require('../validator/validateHelper')
 
 const validateCreateSchool = [ //TODO:name, age, email
 body('name_school').trim().notEmpty().exists(),
-body('cct').trim().notEmpty().exists().isNumeric(),
+body('cct').trim().notEmpty().exists(),
 body('nivel').trim().notEmpty().exists(),
 body('calle').trim().notEmpty().exists(),
-body('noExterior').trim().notEmpty().exists().isNumeric(),
-body('numeroInterior').trim().notEmpty().exists().isNumeric(),
+body('noExterior').trim().notEmpty().exists(),
+body('numeroInterior').trim().notEmpty().exists(),
 body('asentamiento').trim().notEmpty().exists(),
 body('email_school').trim().isEmail().normalizeEmail(),
 body('telefono').trim().notEmpty(),

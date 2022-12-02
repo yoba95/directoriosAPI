@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       cct: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       nivel: {
         type: Sequelize.STRING
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       noExterior: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       numeroInterior: {
         type: Sequelize.STRING

@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   School.init({
     name_school: DataTypes.STRING,
-    cct: DataTypes.INTEGER,
+    cct: DataTypes.STRING,
     nivel: DataTypes.STRING,
     calle: DataTypes.STRING,
-    noExterior: DataTypes.INTEGER,
+    noExterior: DataTypes.STRING,
     numeroInterior: DataTypes.STRING,
     asentamiento: DataTypes.STRING,
     email: DataTypes.STRING,

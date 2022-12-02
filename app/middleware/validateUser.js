@@ -104,29 +104,3 @@ async checkExistedSchool(req, res, next){
         })
    },
 }
-
-/*
-//-------------------------------------------------------
-//Validacion Para hacer acutalizaciones al la info del usuario
-async updateData(req,res,nect){
-    let user = await db.user.findOne(
-        {   where:{
-            id: req.user.id
-        }
-     }
-        ).then(user => {
-        //Si no existe crea el usuario y le asigna un role por default
-            if (!user) {
-                
-                next()
-                //res.status(401).json({ msg: "La escuela con este correo no existe" })
-                
-            } else {
-                res.status(401).json({ msg: "Ya se encuentra registrada una escuela con este correo" })
-            }
-        
-        }).catch(err => {
-            res.status(500).json(err);
-        })
-},
-*/

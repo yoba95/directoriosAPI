@@ -11,7 +11,7 @@ validateEmployee = [
 
 body('full_name').trim().notEmpty().exists(),
 body('email',' El email para el empleado es incorrecto').trim().isEmail().normalizeEmail(),
-body('number_phone').trim().notEmpty().exists().isNumeric(),
+body('number_phone').trim().notEmpty().exists(),
 body('oficina').trim().notEmpty().exists(),
 ],
 (req, res, next) => {

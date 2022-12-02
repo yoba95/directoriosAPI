@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Ubicacion.init({
-    longitud: DataTypes.FLOAT,
-    latidud: DataTypes.FLOAT
+    longitud: DataTypes.DOUBLE,
+    latidud: DataTypes.DOUBLE
   }, {
     sequelize,
     modelName: 'ubicacion',

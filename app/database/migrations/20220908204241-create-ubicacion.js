@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       longitud: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DOUBLE
       },
       latidud: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DOUBLE
       },
       createdAt: {
         allowNull: false,

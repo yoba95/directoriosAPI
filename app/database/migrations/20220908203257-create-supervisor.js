@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       telephone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       email: {
         type: Sequelize.STRING
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       directorio_recuperado: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

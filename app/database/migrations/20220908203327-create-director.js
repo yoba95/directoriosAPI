@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       telephone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       puesto: {
         type: Sequelize.STRING

@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Supervisor.init({
     name: DataTypes.STRING,
-    telephone: DataTypes.INTEGER,
+    telephone: DataTypes.STRING,
     email: DataTypes.STRING,
     recuperado: DataTypes.STRING,
-    directorio_recuperado: DataTypes.DATE
+    directorio_recuperado: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'supervisor',
