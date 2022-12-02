@@ -80,9 +80,10 @@ async deleteRegion (req, res){
             await db.region.destroy({
             where:{id}
         });
-        return res.status(201).json( "La Region Ha Sido Eliminado ");
+        return res.status(200).json( "La Region Ha Sido Eliminado =) ");
          }
-        
+    
+
     } catch (error) {
           console.log(error);
             return res.status(500).json( "error del servidor"); 
