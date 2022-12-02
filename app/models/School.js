@@ -23,13 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     asentamiento: DataTypes.STRING,
     email: DataTypes.STRING,
     telefono: DataTypes.STRING,
-   /* userId: {
+    userId: {
         type: DataTypes.INTEGER,
         references: {
           model: 'users',
           key: 'id'
         }
-    },*/
+    },
     localidadId: {
       type: DataTypes.INTEGER,
       references: {
