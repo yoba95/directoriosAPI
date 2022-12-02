@@ -119,7 +119,11 @@ async allUserEmpleado(req, res) {
 async getUser(req, res) {
     let user = await db.user.findByPk(req.params.id,
         {
-            include: [ { all: true } ]
+         //  include: [ { all: true } ]
+         include: [       
+        'role','employee'
+  
+         ]
         });
 
         if(!user) {
