@@ -18,7 +18,7 @@ const UserController = require('../controllers/User_controller');
 router.get('/api/users',UserController.allUsers);
 router.get('/api/users/employee',auth.validateToken,validate.isAdmin,UserController.allUserEmpleado);
 router.get('/api/users/roles',auth.validateToken,validate.isAdmin,UserController.allUserRole);
-router.get('/api/user-data/:id',auth.validateToken,validate.isAdmin,UserController.getUser);
+router.get('/api/user-data/:id',UserController.getUser);
 
 router.post('/api/users/signin',bodyLoginValidator,UserController.SignIn);
 router.post('/api/users/logout', UserController.logout);
