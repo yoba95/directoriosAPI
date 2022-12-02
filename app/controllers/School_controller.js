@@ -104,7 +104,7 @@ try {
     const school = await db.school.findOne({
         where: {id},
         include: [
-            'ubicacion','usuario','localidad',{
+            'ubicacion','localidad',{
                 association: db.school.associations.director,
                 include: [ 'supervisor' ]
 
