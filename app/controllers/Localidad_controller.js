@@ -17,7 +17,7 @@ async createLocalidad(req, res) {
 //pruena respuesta
      } catch (error) {
         console.log(error);
-        return res.status(500).json( "error del servidor");
+        return res.status(500).json( "error del servidor jaj aja ");
      }
 },
 
