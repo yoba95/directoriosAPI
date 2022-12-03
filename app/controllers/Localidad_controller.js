@@ -14,7 +14,7 @@ async createLocalidad(req, res) {
         updatedAt: new Date()
         });
         return res.status(200).json({localidad});
-
+//pruena respuesta
      } catch (error) {
         console.log(error);
         return res.status(500).json( "error del servidor");
