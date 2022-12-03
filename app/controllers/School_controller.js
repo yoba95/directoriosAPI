@@ -59,7 +59,7 @@ async createSchool(req, res){
       }
  
     );
-    return res.status(200).json({schol:school});
+    return res.status(200).json(school);
     } catch (error) {
         console.log(error);
         return res.status(500).json("error del servidor"); 
@@ -115,14 +115,14 @@ try {
     });
 
     if(!school){
-        return res.status(404).json({error: "La Escuela No Existe"});
+        return res.status(404).json("La Escuela No Existe");
     }else{
-        return res.status(203).json(school);
+        return res.status(200).json({school: school});
     }
     
 } catch (error) {
     console.log(error);
-    return res.status(500).json({error: "error del servidor"}); 
+    return res.status(500).json( "error del servidor"); 
 }
 
 },
@@ -138,17 +138,17 @@ async updateSchool(req, res){
             include: [{ all: true}]
         })
         if(!school){
-            return res.status(404).json({error: "La Escuela No Existe"});
+            return res.status(404).json("La Escuela No Existe");
         }else
 
         school.set(req.body);
         await school.save();
 
-        return res.status(203).json(school);
+        return res.status(200).json(school);
 
     } catch (error) {
          console.log(error);
-    return res.status(500).json({error: "error del servidor"}); 
+    return res.status(500).json("error del servidor"); 
     }
 
 },
@@ -160,17 +160,17 @@ async deleteSchool (req, res){
 
         const school = await db.school.findByPk(id);
         if(!school){
-            return res.status(404).json({error: "No Existe La Escuela"});
+            return res.status(404).json("No Existe La Escuela");
         }else{
             await db.school.destroy({
                 where: {id}
             });
-            return res.status(201).json({msg: "Escuela Eliminada"});
+            return res.status(200).json("La Escuela Ha Sido Eliminada");
       }
     
     } catch (error) {
         console.log(error);
-        return res.status(500).json({error: "error del servidor"}); 
+        return res.status(500).json("error del servidor"); 
     }
 }
 

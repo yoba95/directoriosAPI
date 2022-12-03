@@ -73,7 +73,7 @@ module.exports = {
             municipio.set(req.body);
             await municipio.save();
 
-            return res.status(201).json(municipio);
+            return res.status(200).json(municipio);
 
         } catch (error) {
             console.log(error);
@@ -94,7 +94,7 @@ module.exports = {
                 }
             });
             
-            return res.status(201).json( "El municipio ha sido eliminado ");
+            return res.status(200).json( "El Municipio Ha Sido Eliminad0");
             }
             
         } catch (error) {

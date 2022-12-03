@@ -134,21 +134,31 @@ async getUser(req, res) {
         }
     },
 
-//actuazilr datos de usuario-------------------------------------------------
+//actuazilr datos de usuario------------CONTRASEÑA-------------------------------------
 async updateUser(req, res) {
-const {id} = req.params;
 
-let users = await db.user.findOne({
-    where: {id}
-});
-    if(!users) {
-        res.status(401).json( "Usuario no encontrado" );
-    } else {
-        users.set(req.body)
-        await users.save(users)
-        res.status(200).json(users)        
-    }
+         try {
+
+            let contraseña = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
+        const {email,} = req.body
+            const {id} = req.params;
+
+            const users = await db.user.findByPk(id);
+
+            if(!users){
+                return res.status(404).json( "El Usuario No no Existe");
+            } else 
+                users.password = contraseña;
+                await users.save();
+                return res.status(200).json(users);
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json( "error del servidor");
+        }   
 },
+
+
 //eliminar usuario-------------------------------------------------
 async deleteUser(req, res) {
     let user = await db.user.findByPk(req.params.id,{
@@ -166,9 +176,9 @@ async deleteUser(req, res) {
         user.destroy().then(user=> {
         res.status(200).json( "El usuario ha sido eliminado ");
         });
-
     }
 },
+
 //cerrar sesion
     async logout(req, res){
         const { token } = req.user;

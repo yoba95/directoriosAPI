@@ -13,11 +13,11 @@ async createLocalidad(req, res) {
         createdAt: new Date(),
         updatedAt: new Date()
         });
-        return res.status(200).json({localidad});
-//pruena respuesta
+        return res.status(200).json(localidad);
+//spruena respuesta
      } catch (error) {
         console.log(error);
-        return res.status(500).json( "error del servidor jaj aja ");
+        return res.status(500).json( "error del servidoR");
      }
 },
 
@@ -71,7 +71,7 @@ async allLocalidadId (req,res){
          localidad.set(req.body);
          await localidad.save();
 
-         return res.status(201).json(localidad);
+         return res.status(200).json(localidad);
          }
 
       } catch (error) {
@@ -90,7 +90,7 @@ async deleteLocalidad (req, res){
          await db.localidad.destroy({
          where: {id}
       });
-      return res.status(201).json( "Localidad eliminada");
+      return res.status(200).json( "La Localidad Ha Sido Eliminada");
       }
 
    } catch (error) {
