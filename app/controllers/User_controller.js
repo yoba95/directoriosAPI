@@ -34,7 +34,7 @@ await db.user.findOne({
             });
           //  generateCookieToken(user.id, res);
            return res.status(200).json({user:user, token:token}); 
-          
+         
           //.then(usuario => res.status(200).send(usuario))
        //   return res.status(200).json({token: token});
         } else {
