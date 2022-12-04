@@ -10,7 +10,7 @@ const UserController = require('../controllers/User_controller');
 
 
 router.get('/api/users',UserController.allUsers);
-router.get('/api/users/employee',auth.validateToken,validate.isAdmin,UserController.allUserEmpleado);
+router.get('/api/users/employee',UserController.allUserEmpleado);
 router.get('/api/users/roles',auth.validateToken,validate.isAdmin,UserController.allUserRole);
 router.get('/api/user-data/:id',UserController.getUser);
 
