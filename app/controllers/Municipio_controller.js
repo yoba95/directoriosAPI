@@ -99,7 +99,7 @@ module.exports = {
             
         } catch (error) {
             console.log(error);
-            return res.status(500).json( "error del del servidor"); 
+            return res.status(500).json( "error del servidor"); 
         }
 
 },
