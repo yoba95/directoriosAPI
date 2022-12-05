@@ -26,7 +26,8 @@ app.use(require('./routers/School_routes'));
 app.use(require('./routers/Regiones_routes'));
 app.use(require('./routers/Municipio_routes'));
 app.use(require('./routers/Localidad_routes'));
-
+app.use(require('./routers/Director_routes'))
+app.use(require('./routers/Supervisor_routes'));
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 
 app.listen(PORT, function(){
