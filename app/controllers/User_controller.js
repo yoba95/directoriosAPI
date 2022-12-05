@@ -23,7 +23,7 @@ await db.user.findOne({
 }).then(user => {
 
     if (!user) {
-        res.status(401).json( "Usuario con este correo no encontrado" );
+        res.status(401).json( "Usuario con estess correo no encontrado" );
     } else {
 
         if (bcrypt.compareSync(password, user.password) ) {
