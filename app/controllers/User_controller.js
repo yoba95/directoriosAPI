@@ -129,7 +129,7 @@ async getUser(req, res) {
             //!!MANERA CORRECTA DE MANDAR EL ERROR PARA MOSTRARLO EN FLUTTER
             res.status(401).json("El usuario no ha sido encontrado" );
         } else {
-            res.status(200).json({user: user});
+            res.status(200).json([{user: user}]);
         }
     },
 
