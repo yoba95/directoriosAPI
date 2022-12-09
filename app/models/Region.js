@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Region.init({
-    nameRegion: DataTypes.STRING
+    nameRegion: DataTypes.STRING,
+    
   }, {
     sequelize,
     modelName: 'region',

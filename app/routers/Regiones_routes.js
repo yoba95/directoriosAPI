@@ -9,11 +9,11 @@ const RegionController = require('../controllers/Region_controller');
 const validate = require('../middleware/validateUser');
 
 //router.post('/api/v1/region',validate.isAdmin,regionValidator.bodyRegionValidator,RegionController.createRegion);
-router.post('/api/v1/region',validate.isAdmin,regionValidator.bodyRegionValidator,RegionController.createRegion);
-router.get('/api/v1/regiones', RegionController.allRegion);
+router.post('/api/v1/region',auth.validateToken,validate.isAdmin,regionValidator.bodyRegionValidator,RegionController.createRegion);
+router.get('/api/v1/regiones',RegionController.allRegion);
 router.get('/api/v1/region/:id',RegionController.allRegionId);
-router.put('/api/v1/region/:id',validate.isAdmin,regionValidator.bodyRegionValidator, RegionController.updateRegion);
-router.delete('/api/v1/region/:id', validate.isAdmin,RegionController.deleteRegion);
+router.put('/api/v1/region/:id',auth.validateToken,validate.isAdmin,regionValidator.bodyRegionValidator, RegionController.updateRegion);
+router.delete('/api/v1/region/:id',auth.validateToken, validate.isAdmin,RegionController.deleteRegion);
 
 router.get('/api/v1/regiones/:id/municipios', RegionController.getRegioMunicipios);
 

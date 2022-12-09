@@ -3,9 +3,10 @@ module.exports = {
 
 async createRegion(req, res) {
     const { nameRegion } = req.body;
-
+ 
     try {
-         const region = await db.region.create({
+
+        const region = await db.region.create({
         nameRegion,
         createdAt: new Date(),
         updatedAt: new Date()
