@@ -3,9 +3,6 @@ const router = express.Router();
 //middleware
 const auth = require('../middleware/auth');
 
-const validate = require('../middleware/validateUser');
-const { validateCreate,validateLogin } = require('../validator/UserValidator');
-//controller
 const SupervisorController = require('../controllers/Supervisor_controller');
 
 
