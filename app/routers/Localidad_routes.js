@@ -8,11 +8,11 @@ const LocalidadController = require('../controllers/Localidad_controller');
 const validate = require('../middleware/validateUser');
 
 
-router.post('/api/v1/localidad', localidadValidator.bodyLocalidadValidator ,LocalidadController.createLocalidad);
-router.get('/api/v1/localidades', LocalidadController.allLocalidades);
-router.get('/api/v1/localidades/:id',LocalidadController.allLocalidadId);
-router.put('/api/v1/localidades/:id', LocalidadController.updateLocalidad);
-router.delete('/api/v1/localidades/:id', LocalidadController.deleteLocalidad);
+router.post('/api/v1/localidad',auth.validateToken,validate.isAdmin, localidadValidator.bodyLocalidadValidator ,LocalidadController.createLocalidad);
+router.get('/api/v1/localidades',auth.validateToken, LocalidadController.allLocalidades);
+router.get('/api/v1/localidades/:id',auth.validateToken,LocalidadController.allLocalidadId);
+router.put('/api/v1/localidades/:id',auth.validateToken,validate.isAdmin, LocalidadController.updateLocalidad);
+router.delete('/api/v1/localidades/:id',auth.validateToken,validate.isAdmin, LocalidadController.deleteLocalidad);
 
 module.exports = router;
 

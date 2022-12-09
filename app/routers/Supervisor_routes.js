@@ -9,6 +9,6 @@ const { validateCreate,validateLogin } = require('../validator/UserValidator');
 const SupervisorController = require('../controllers/Supervisor_controller');
 
 
-router.put('/api/v1/supervisorUpdate/:id', SupervisorController.updateSupervisor);
+router.put('/api/v1/supervisorUpdate/:id',auth.validateToken, SupervisorController.updateSupervisor);
 //router.delete('/api/users/delete/:id',auth.validateToken,validate.isAdmin,UserController.deleteUser);
 module.exports = router;

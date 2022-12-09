@@ -15,12 +15,12 @@ const validate = require('../middleware/validateUser');
 //DELETE         /api/v1/municipio/:id                remove 
 
 //router.post('/api/v1/municipio',validate.isAdmin, municipioValidator.bodyMunicipioValidator, MunicipioController.createMunicipio);
-router.post('/api/v1/municipio',municipioValidator.bodyMunicipioValidator, MunicipioController.createMunicipio);
-router.get('/api/v1/municipios',MunicipioController.allMunicipios);
-router.get('/api/v1/municipio/:id',MunicipioController.allMunicipioId);
-router.put('/api/v1/municipio/:id', MunicipioController.updateMunicipio);
-router.delete('/api/v1/municipio/:id', MunicipioController.deleteMunicipio);
+router.post('/api/v1/municipio',auth.validateToken,validate.isAdmin,municipioValidator.bodyMunicipioValidator, MunicipioController.createMunicipio);
+router.get('/api/v1/municipios',auth.validateToken,MunicipioController.allMunicipios);
+router.get('/api/v1/municipio/:id',auth.validateToken,MunicipioController.allMunicipioId);
+router.put('/api/v1/municipio/:id',auth.validateToken,validate.isAdmin, MunicipioController.updateMunicipio);
+router.delete('/api/v1/municipio/:id',auth.validateToken,validate.isAdmin,MunicipioController.deleteMunicipio);
 
 // ruta para traer todas las localides que le pertenecen a un municipio
-router.get('/api/v1/municipios/:id/localidades',MunicipioController.getMunicipioLocalidades);
+router.get('/api/v1/municipios/:id/localidades',auth.validateToken,MunicipioController.getMunicipioLocalidades);
 module.exports = router;
