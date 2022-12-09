@@ -14,7 +14,7 @@ async createRegion(req, res) {
     return res.status(200).json(region);
     } catch (error) {
         console.log(error);
-        return res.status(500).json("error del servidor"); 
+        return res.status(500).json("error del sservidor"); 
     }
    
 },
