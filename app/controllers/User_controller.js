@@ -137,7 +137,6 @@ async getUser(req, res) {
 async updateUser(req, res) {
 
          try {
-
             let contraseña = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
         const {email,} = req.body
             const {id} = req.params;

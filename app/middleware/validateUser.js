@@ -2,32 +2,46 @@ const db = require('../models');
 
     module.exports = {
      //Comprueba que exista el usuario
-       async checkExisted(req, res, next){
-        let nameRole = await db.role.findOne({
-            where:
-            {
-                name_role: 'user'
-            }
-        });
+      async checkExisted(req, res, next){
+        
         let user = await db.user.findOne({
             where: {
                 email: req.body.email
             },
             include: [ 'employee' ]
-            }).then(user => {
+            }).then(async user => {
             //Si no existe crea el usuario y le asigna un role por default
                 if (!user) {
-                    if(!req.body.roleId){
+                   
+                    if(req.body.roleId){
                         
-                        //let name = nameRole
+                        let roleId = await db.role.findOne({
+                            where:
+                            {
+                                id: req.body.roleId
+                            }
+                        });
+                        
+                        req.role = roleId
+                        next()
+                        //res.status(200).json({msg : req.role} ); 
+                        
+                        
+                    }
+                    else {
+                        let nameRole = await db.role.findOne({
+                            where:
+                            {
+                                name_role: 'user'
+                            }
+                        });
                         req.role = nameRole;
                         next()
-                        //tratar con un ciclo for
-                        //res.status(401).json({msg:"holamundo" })
+                        
+                        
                     }
-    
                 } else {
-                    res.status(400).json( "El usuario ya existe" )
+                    res.status(401).json({ msg: "El usuario ya existe" })
                 }
             
             }).catch(err => {
