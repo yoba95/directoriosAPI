@@ -133,18 +133,18 @@ async getUser(req, res) {
         }
     },
 
-//actuazilr datos de usuario------------CONTRASEÑA-------------------------------------
+//actuazilar datos de usuario------------CONTRASEÑA-------------------------------------
 async updateUser(req, res) {
 
          try {
             let contraseña = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
-        const {email,} = req.body
+        
             const {id} = req.params;
 
             const users = await db.user.findByPk(id);
 
             if(!users){
-                return res.status(404).json( "El Usuario No no Existe");
+                return res.status(404).json( "El Usuario No Existe");
             } else 
                 users.password = contraseña;
                 await users.save();
