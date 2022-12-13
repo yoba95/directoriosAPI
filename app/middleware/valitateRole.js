@@ -14,7 +14,7 @@ const db = require('../models');
                 if (!rol) {
                     next()
                 } else {
-                    res.status(401).json({ msg: "El role ya existe" })
+                    res.status(401).json( "El role ya existe" )
                 }
             
             }).catch(err => {
