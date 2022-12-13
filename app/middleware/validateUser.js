@@ -59,7 +59,7 @@ const db = require('../models');
             },
             include: [ 'user' ]}).then(roles => {
                //for(let i= 0; i < roles.lenth; i++){
-                if(roles.name_role === 'admin' || roles.name_role === 'Admin'){
+                if(roles.name_role === 'admin'){
                    req.rol = roles;
                     next()
                     //res.status(500).json('Eres admin'); 
@@ -80,7 +80,7 @@ const db = require('../models');
             },
             include: [ 'user' ]}).then(roles => {
                //for(let i= 0; i < roles.lenth; i++){
-                if(roles.name_role === 'user'|| roles.name_role === 'User'){
+                if(roles.name_role === 'user'){
                     req.rol = roles;
                     next()
                     //res.status(500).json('Eres admin'); 
