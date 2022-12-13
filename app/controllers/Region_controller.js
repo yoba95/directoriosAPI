@@ -20,15 +20,25 @@ async createRegion(req, res) {
    
 },
 
-async allRegion(req,res){
+async allRegion (req,res) {
     try {
-        const regiones = await db.region.findAll();
-    return res.status(200).json({regiones :regiones});
+     const regiones = await db.region.findAll();
+ /*  const { page = 0, size = 5} = req.query;
+
+   let options = {
+    limit: +size,
+    offset: (+page) * (+size)
+   }
+
+   const {count, rows} = await db.region.findAndCountAll(options);
+
+   return res.status(200).json({total: count, regiones :rows});*/
+        return res.status(200).json({regiones :regiones});
     } catch (error) {
          console.log(error);
         return res.status(500).json( "error del servidor"); 
     }
-    
+   
 },
 
 async allRegionId (req, res){

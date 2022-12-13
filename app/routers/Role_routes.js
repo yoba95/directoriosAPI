@@ -27,7 +27,7 @@ const RoleController = require('../controllers/Role_controller');
 const { isAdmin } = require('../middleware/validateUser');
 //prueba de fina¿dall user con roles y roles con users
 router.get('/api/roles/user',auth.validateToken, isAdmin, RoleController.allRolesUser);
-router.get('/api/roles',RoleController.allRoles);
+router.get('/api/roles',auth.validateToken, isAdmin ,RoleController.allRoles);
 router.get('/api/role/:id',auth.validateToken, isAdmin, RoleController.getRole);
 //router.post('/api/getRolesValidator',RoleController.createRole);
 router.post('/api/new-roles',validateCreate,validate.checkExisted, RoleController.createRole);
