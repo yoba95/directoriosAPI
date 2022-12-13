@@ -2,19 +2,20 @@ const db = require('../models'); //prueba exitosa pero con difine
 module.exports = {
 
 async createRegion(req, res) {
-    const { nameRegion } = req.body;
+    const { nameRegion, nameJefeSare} = req.body;
  
     try {
 
         const region = await db.region.create({
         nameRegion,
+        nameJefeSare,
         createdAt: new Date(),
         updatedAt: new Date()
     })
     return res.status(200).json(region);
     } catch (error) {
         console.log(error);
-        return res.status(500).json("error del sservidor"); 
+        return res.status(500).json("error del servidor"); 
     }
    
 },
@@ -47,17 +48,17 @@ async allRegionId (req, res){
 async updateRegion (req, res){
     
     const {id} = req.params;
-    const {nameRegion} = req.body;
+    
 
     try {
         
         const region = await db.region.findByPk(id);
 
         if(!region){
-        return res.status(404).json( "La Region No no Existe");
+        return res.status(404).json( "La Region No Existe");
       } else 
 
-        region.nameRegion = nameRegion;
+        region.set(req.body);
         await region.save();
 
         return res.status(200).json(region);

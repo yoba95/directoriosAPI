@@ -9,9 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
      /* idRegion: {
-        type: Sequelize.INTEGER
+       type: Sequelize.INTEGER
       },*/
       nameRegion: {
+        type: Sequelize.STRING
+      },
+      nameJefeSare: {
         type: Sequelize.STRING
       },
       createdAt: {
