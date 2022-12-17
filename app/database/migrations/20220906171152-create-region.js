@@ -14,9 +14,6 @@ module.exports = {
       nameRegion: {
         type: Sequelize.STRING
       },
-      nameJefeSare: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE

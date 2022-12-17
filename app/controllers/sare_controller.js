@@ -1,17 +1,24 @@
 const db = require('../models'); //prueba exitosa pero con difine
 module.exports = {
 
-async createRegion(req, res) {
-    const { nameRegion} = req.body;
+async createSare(req, res) {
+    const {idSare, nameSare, nameJefeSare, telefono, email, longitud, latitud, localidadId } = req.body;
  
     try {
 
-        const region = await db.region.create({
-        nameRegion,
+        const sare = await db.sare.create({
+            idSare,
+        nameSare,
+        nameJefeSare,
+        telefono,
+        email,
+        longitud,
+        latitud,
+        localidadId,
         createdAt: new Date(),
         updatedAt: new Date()
     })
-    return res.status(200).json(region);
+    return res.status(200).json(sare);
     } catch (error) {
         console.log(error);
         return res.status(500).json("error del servidor"); 
@@ -19,20 +26,13 @@ async createRegion(req, res) {
    
 },
 
-async allRegion (req,res) {
+async allSare (req,res) {
     try {
-     const regiones = await db.region.findAll();
- /*  const { page = 0, size = 5} = req.query;
+     const sares = await db.sare.findAll(
+        {include:   [{all: true}]}
+     );
 
-   let options = {
-    limit: +size,
-    offset: (+page) * (+size)
-   }
-
-   const {count, rows} = await db.region.findAndCountAll(options);
-
-   return res.status(200).json({total: count, regiones :rows});*/
-        return res.status(200).json({regiones :regiones});
+        return res.status(200).json({sares :sares});
     } catch (error) {
          console.log(error);
         return res.status(500).json( "error del servidor"); 
@@ -40,37 +40,37 @@ async allRegion (req,res) {
    
 },
 
-async allRegionId (req, res){
+async allSareId (req, res){
     const {id} = req.params;
     try {
-      const region = await db.region.findByPk(id); 
+      const sare = await db.sare.findByPk(id); 
       
-      if(!region){
+      if(!sare){
         return res.status(404).json( "La Region No Existe");
-      } else return res.status(200).json({region: region});
+      } else return res.status(200).json({sare: sare});
     } catch (error) {
          console.log(error);
         return res.status(500).json( "error del servidor"); 
     }
 },
 
-async updateRegion (req, res){
+async updateSare (req, res){
     
     const {id} = req.params;
     
 
     try {
         
-        const region = await db.region.findByPk(id);
+        const sare = await db.sare.findByPk(id);
 
-        if(!region){
+        if(!sare){
         return res.status(404).json( "La Region No Existe");
       } else 
 
-        region.set(req.body);
-        await region.save();
+        sare.set(req.body);
+        await sare.save();
 
-        return res.status(200).json(region);
+        return res.status(200).json(sare);
 
     } catch (error) {
          console.log(error);
@@ -79,16 +79,16 @@ async updateRegion (req, res){
 
 },
 
-async deleteRegion (req, res){
+async deleteSare (req, res){
 
     const {id} = req.params;
 
     try {
-        const regionss = await db.region.findByPk(id);
-         if (!regionss){
+        const sares = await db.sare.findByPk(id);
+         if (!sares){
             return res.status(404).json( "No Existe La Region");
          } else{
-            await db.region.destroy({
+            await db.sare.destroy({
             where:{id}
         });
         return res.status(200).json( "La Region Ha Sido Eliminada ");

@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Region.init({
     nameRegion: DataTypes.STRING,
-    nameJefeSare: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'region',

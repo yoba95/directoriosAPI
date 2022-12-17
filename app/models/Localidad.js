@@ -44,6 +44,12 @@ module.exports = (sequelize, DataTypes) => {
         targetId: 'id',
         //as: 'school'
       });
+     
+   
+     Localidad.hasOne(models.sare, {
+        foreignKey: 'localidadId',
+        key: 'id' 
+      });
   }
   return Localidad;
 };

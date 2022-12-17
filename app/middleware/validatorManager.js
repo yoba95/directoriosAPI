@@ -39,9 +39,23 @@ exports.bodyRegionValidator = [
     }
 ];
 
+exports.bodySareValidator = [
+    body("idSare","Es Necesario Introducir El Identificador De La Region").notEmpty(),
+    body("nameSare", "Es Necesario Introducir El Nombre De La Region").notEmpty().toUpperCase(),
+     body("nameJefeSare", "Es Necesario Introducir El Nombre Del Representante").notEmpty().toUpperCase(),
+    
+    (req, res, next) => {
+         let errors = validationResult(req); 
+        if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
+    next();
+    }
+];
 //verificar si la clave de la localidad ya existe
 exports.checkClaveLocalidadExisted = async (req, res, next) => {
     const claveLocOfi = await db.localidad.findOne({claveLocOfi: req.body.claveLocOfi})
     if (claveLocOfi) return res.status(404).json("La Clave De La Localidad Ya Existe")
     next();
 }
+
