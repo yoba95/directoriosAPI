@@ -4,8 +4,8 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return Promise.all([
       queryInterface.bulkInsert('roles', [
-        { name_role: "admin"},
-        { name_role: "user"}
+        { name_role: "administrador"},
+        { name_role: "usuario"}
       ], {}),
 
     ])

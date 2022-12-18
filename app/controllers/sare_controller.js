@@ -28,15 +28,21 @@ async createSare(req, res) {
 
 async allSare (req,res) {
     try {
-     const sares = await db.sare.findAll(
-        {include:   [{all: true}]}
-     );
-
-        return res.status(200).json({sares :sares});
-    } catch (error) {
-         console.log(error);
-        return res.status(500).json( "error del servidor"); 
-    }
+         const sares = await db.sare.findAll({
+            include: ['localidad',{
+                association: db.sare.associations.localidad,
+                include: [ 'municipio',
+            {
+                association: db.localidad.associations.municipio,
+                include: ['region'] 
+            } ]}]
+         }
+         );
+         return res.status(202).json(sares); 
+      } catch (error) {
+          console.log(error);
+           return res.status(500).json({error: "error del servidor"});
+      }
    
 },
 

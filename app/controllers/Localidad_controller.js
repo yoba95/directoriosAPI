@@ -24,8 +24,8 @@ async createLocalidad(req, res) {
 async allLocalidades(req,res){
    try {
       const localidad = await db.localidad.findAll({
-         include: [{all: true}]
-       // include: ['municipio']
+        //include: [{all: true}]
+       include: ['municipio']
       }
       );
       return res.status(200).json({localidades:localidad}); 

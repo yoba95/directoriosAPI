@@ -32,7 +32,7 @@ const db = require('../models');
                         let nameRole = await db.role.findOne({
                             where:
                             {
-                                name_role: 'user'
+                                name_role: 'usuario'
                             }
                         });
                         req.role = nameRole;
@@ -57,9 +57,9 @@ const db = require('../models');
             where: {
                 id: req.user.role.id
             },
-            include: [ 'user' ]}).then(roles => {
+            include: [ 'usuario' ]}).then(roles => {
                //for(let i= 0; i < roles.lenth; i++){
-                if(roles.name_role === 'admin'){
+                if(roles.name_role === 'administrador'){
                    req.rol = roles;
                     next()
                     //res.status(500).json('Eres admin'); 
@@ -80,7 +80,7 @@ const db = require('../models');
             },
             include: [ 'user' ]}).then(roles => {
                //for(let i= 0; i < roles.lenth; i++){
-                if(roles.name_role === 'user'){
+                if(roles.name_role === 'usuario'){
                     req.rol = roles;
                     next()
                     //res.status(500).json('Eres admin'); 
