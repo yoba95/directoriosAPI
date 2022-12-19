@@ -57,7 +57,7 @@ const db = require('../models');
             where: {
                 id: req.user.role.id
             },
-            include: [ 'usuario' ]}).then(roles => {
+            include: [ 'user' ]}).then(roles => {
                //for(let i= 0; i < roles.lenth; i++){
                 if(roles.name_role === 'administrador'){
                    req.rol = roles;
