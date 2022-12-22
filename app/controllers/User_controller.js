@@ -101,7 +101,7 @@ async allUserRole(req, res) {
 //trae todos los usuarios
 async allUsers(req, res) {
 let user = await db.user.findAll({
-include: [{all: true}]
+include: ['role','employee']
 })
 res.status(200).json({users:user }) ;
 
