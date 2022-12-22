@@ -157,6 +157,33 @@ async updateUser(req, res) {
 },
 
 
+//actuazilar rol del usuario--
+async updateRoleUser(req, res) {
+        try {
+            let role = req.body.roleId;
+        
+            const {id} = req.params;
+
+            const users = await db.user.findByPk(id);
+
+            if(!users){
+                return res.status(404).json( "El Usuario No Existe");
+            } else 
+                users.roleId = role;
+                await users.save();
+                return res.status(200).json(users);
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json( "error del servidor");
+        }   
+         
+                /*users.password = contraseña;
+                await users.save();
+                return res.status(200).json(users);*/
+
+       
+},
 //eliminar usuario-------------------------------------------------
 async deleteUser(req, res) {
     let user = await db.user.findByPk(req.params.id,{

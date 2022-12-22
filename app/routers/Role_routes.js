@@ -30,7 +30,7 @@ router.get('/api/roles/user',auth.validateToken, isAdmin, RoleController.allRole
 router.get('/api/roles',auth.validateToken, isAdmin ,RoleController.allRoles);
 router.get('/api/role/:id',auth.validateToken, isAdmin, RoleController.getRole);
 //router.post('/api/getRolesValidator',RoleController.createRole);
-router.post('/api/new-roles',validateCreate,validate.checkExisted, RoleController.createRole);
+router.post('/api/new-roles',auth.validateToken, isAdmin ,validateCreate,validate.checkExisted, RoleController.createRole);
 router.delete('/api/roles/delete/:id',auth.validateToken,isAdmin, RoleController.deleteRole);
 
 module.exports = router;

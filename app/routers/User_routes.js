@@ -19,7 +19,8 @@ router.post('/api/users/logout', UserController.logout);
 router.post('/api/users/signup',validateCreate,validate.checkExisted,UserController.createCou);
 //ruta para actualizar la contraseña
 router.put('/api/users/update/:id',auth.validateToken, UserController.updateUser);
-
+//ruta para actualizar el rol del usuario
+router.put('/api/user-role/update/:id',auth.validateToken,validate.isAdmin, UserController.updateRoleUser);
 router.delete('/api/users/delete/:id',auth.validateToken,validate.isAdmin,UserController.deleteUser);
 //saber que modificacion puede hacer el usuario normal y el usuario admin
 module.exports = router;

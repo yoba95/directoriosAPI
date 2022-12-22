@@ -65,7 +65,7 @@ const db = require('../models');
                     //res.status(500).json('Eres admin'); 
                 }
                 else {
-                    res.status(400).json( "No Estas Autorizado Para Esta Accion, Requieres Ser Administrador"); 
+                    res.status(400).json( "Requieres Ser Administrador"); 
                 }
                 
             }).catch(err => {
