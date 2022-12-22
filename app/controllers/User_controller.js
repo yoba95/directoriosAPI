@@ -100,8 +100,9 @@ async allUserRole(req, res) {
 },
 //trae todos los usuarios
 async allUsers(req, res) {
-let user = await db.user.findAll()
-//!! DE ESTA MANERA SE TIENEN QUE ENVIAR LOS DATOS DE RESPUESTA PARA PODER MAPEARLOS EN FLUTTER
+let user = await db.user.findAll({
+include: [{all: true}]
+})
 res.status(200).json({users:user }) ;
 
 },
