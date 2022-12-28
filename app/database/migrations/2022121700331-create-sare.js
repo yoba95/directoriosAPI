@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Sares', {
+    await queryInterface.createTable('sares', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -29,6 +29,7 @@ module.exports = {
       latidud: { 
         type: Sequelize.DOUBLE
       },
+    
       localidadId: {
         type: Sequelize.INTEGER,
         references: {
@@ -49,6 +50,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Sares');
+    await queryInterface.dropTable('sares');
   }
 };

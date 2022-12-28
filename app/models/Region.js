@@ -4,13 +4,11 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Region extends Model {
-    /**
-     * Helper meSSSSthod for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    
     static associate(models) {
-      // define association here
+      Region.belongsToMany(models.sare, {
+      through: 'regionsares'
+    });
     }
   }
   Region.init({
@@ -26,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'id'
      // as: 'school'
     });
-     
+
+    
+    
   }
 
   return Region;

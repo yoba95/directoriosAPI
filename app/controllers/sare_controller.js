@@ -1,13 +1,13 @@
 const db = require('../models'); //prueba exitosa pero con difine
 module.exports = {
-
 async createSare(req, res) {
-    const {idSare, nameSare, nameJefeSare, telefono, email, longitud, latitud, localidadId } = req.body;
+    
+    const {idSare, nameSare, nameJefeSare, telefono, email, longitud, latitud, localidadId, region } = req.body;
  
     try {
 
         const sare = await db.sare.create({
-            idSare,
+        idSare,
         nameSare,
         nameJefeSare,
         telefono,
@@ -17,7 +17,11 @@ async createSare(req, res) {
         localidadId,
         createdAt: new Date(),
         updatedAt: new Date()
-    })
+    });
+
+    //succesfull 
+    await sare.addRegion(region, { through: { selfGranted: false }});
+       
     return res.status(200).json(sare);
     } catch (error) {
         console.log(error);
@@ -29,13 +33,14 @@ async createSare(req, res) {
 async allSare (req,res) {
     try {
          const sares = await db.sare.findAll({
-            include: ['localidad',{
+            include: [{all: true}]
+           /* include: ['localidad',{
                 association: db.sare.associations.localidad,
                 include: [ 'municipio',
             {
                 association: db.localidad.associations.municipio,
                 include: ['region'] 
-            } ]}]
+            } ]}]*/
          }
          );
          return res.status(200).json({sares :sares});

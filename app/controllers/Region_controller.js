@@ -3,9 +3,9 @@ module.exports = {
 
 async createRegion(req, res) {
     const { nameRegion} = req.body;
- 
-    try {
 
+    try {
+        
         const region = await db.region.create({
         nameRegion,
         createdAt: new Date(),
@@ -16,6 +16,7 @@ async createRegion(req, res) {
         console.log(error);
         return res.status(500).json("error del servidor"); 
     }
+    
    
 },
 
