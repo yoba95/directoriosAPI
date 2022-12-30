@@ -33,63 +33,59 @@ async createSare(req, res) {
 async allSare (req,res) {
     try {
          const sares = await db.sare.findAll({
-            include: [{all: true}]
-           /* include: ['localidad',{
+          // include: [{all: true}]
+          include: ['regions','localidad',{
                 association: db.sare.associations.localidad,
                 include: [ 'municipio',
             {
                 association: db.localidad.associations.municipio,
                 include: ['region'] 
-            } ]}]*/
+            } ]}]
          }
          );
          return res.status(200).json({sares :sares});
-        //return res.status(202).json(sares); 
       } catch (error) {
           console.log(error);
-           return res.status(500).json({error: "error del servidor"});
+           return res.status(500).json("error del servidor");
       }
    
 },
 
-async allSareId (req, res){
+async addRegionSare(req, res){
     const {id} = req.params;
+    const regiones = req.body;
     try {
-      const sare = await db.sare.findByPk(id); 
-      
-      if(!sare){
-        return res.status(404).json( "La Region No Existe");
-      } else return res.status(200).json({sare: sare});
-    } catch (error) {
-         console.log(error);
-        return res.status(500).json( "error del servidor"); 
-    }
-},
+        const sares = await db.sare.findOne({
+            where: {
+                id: id
+            },
+           //include: [{all:true}]
+           include: ['regions']
 
-async updateSare (req, res){
-    
-    const {id} = req.params;
-    
-
-    try {
+           
+        }
+        );
         
-        const sare = await db.sare.findByPk(id);
-
-        if(!sare){
-        return res.status(404).json( "La Region No Existe");
-      } else 
-
-        sare.set(req.body);
-        await sare.save();
-
-        return res.status(200).json(sare);
-
-    } catch (error) {
+        const [results, metadata] = await sequelize.query('delete from regionsares where "sareId" ='+id);
+        
+        const addR = await sares.addRegion(regiones, { through: { selfGranted: false }});
+        
+        const n = await db.sare.findOne({
+            where: {
+                id: id
+            },
+           //include: [{all:true}]
+           include: ['regions']
+        });
+            return res.status(200).json({regiones : n});
+        
+        
+     } catch (error) {
          console.log(error);
-        return res.status(500).json( "error del servidor");
-    }
-
+          return res.status(500).json({error: "error del servidor"});
+     }
 },
+
 
 async deleteSare (req, res){
 
@@ -113,21 +109,7 @@ async deleteSare (req, res){
     }
 },
 
-async getRegioMunicipios(req, res){
-    try {
-        const {id} = req.params;
 
-        const municipios = await db.municipio.findAll({
-            where: {regionId: id},
-            include: ['region']
-        }) ;
-        
-        return res.status(200).json({municipios:municipios});
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json( "error del servidor"); 
-    }
-}
 
 
 }

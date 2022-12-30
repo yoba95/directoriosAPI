@@ -4,8 +4,6 @@ const authConfig = require('../../config/auth');
 const db = require('../models'); 
 module.exports = {
 
-
-//asosciacion de prueba para los empleados
 async allEmpleadoUser(req, res) {
     let emp = await db.employee.findAll(
         {
@@ -13,26 +11,19 @@ async allEmpleadoUser(req, res) {
         }
     )
     res.json(emp) 
-
 },
 
  async updateEmployee(req, res){
 
         try {
-    
             const {id} = req.params;
-    
             const employee = await db.employee.findOne({
                 where: {id},
                 include: [{ all: true}]
-            })
-           
+            })  
            if(!employee ){
-                return res.status(404).json("Error al Actualizar Los Datos");
-                
+                return res.status(404).json("Error al Actualizar Los Datos");    
             }else
-    
-    
             employee.set(req.body);
             await employee.save();
     

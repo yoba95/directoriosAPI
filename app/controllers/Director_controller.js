@@ -2,9 +2,7 @@ const db = require('../models'); //prueba exitosa pero con difine
 
 module.exports = {
     async updateDirector(req, res){
-
         try {
-    
             const {id} = req.params;
     
             const director = await db.director.findOne({
@@ -26,8 +24,7 @@ module.exports = {
         } catch (error) {
              console.log(error);
         return res.status(500).json( "error del servidor"); 
-        }
-    
+        }    
     },
 
 }
