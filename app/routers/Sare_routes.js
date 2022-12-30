@@ -11,8 +11,7 @@ const validate = require('../middleware/validateUser');
 
 router.post('/api/v1/sare',auth.validateToken,validate.isAdmin,regionValidator.bodySareValidator,sareController.createSare);
 router.get('/api/v1/sares',auth.validateToken,sareController.allSare);
-router.get('/api/v1/sare/:id',auth.validateToken,sareController.allSareId);
-router.put('/api/v1/sare/:id',auth.validateToken,validate.isAdmin,regionValidator.bodyRegionValidator, sareController.updateSare);
+router.put('/api/v1/sare/:id',auth.validateToken,sareController.addRegionSare);
 router.delete('/api/v1/sare/:id',auth.validateToken,validate.isAdmin,sareController.deleteSare);
 
 
