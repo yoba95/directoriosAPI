@@ -62,7 +62,6 @@ async addRegionSare(req, res){
            //include: [{all:true}]
            include: ['regions']
 
-           
         }
         );
         
@@ -94,12 +93,12 @@ async deleteSare (req, res){
     try {
         const sares = await db.sare.findByPk(id);
          if (!sares){
-            return res.status(404).json( "No Existe La Region");
+            return res.status(404).json( "No Existe La sare");
          } else{
             await db.sare.destroy({
             where:{id}
         });
-        return res.status(200).json( "La Region Ha Sido Eliminada ");
+        return res.status(200).json( "La sare Ha Sido Eliminada ");
          }
     
 
