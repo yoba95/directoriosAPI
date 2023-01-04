@@ -6,14 +6,14 @@ module.exports = {
     return queryInterface.bulkInsert('users', [{
      //username: 'admin',
       email: 'yobany@gmail.com',
-      password: bcrypt.hashSync("123456", +authConfig.rounds),
+      password: bcrypt.hashSync("12345678", +authConfig.rounds),
       roleId: 1,
       
     },
     {
      // username: 'will smith',
       email: 'kevin@gmail.com',
-      password: bcrypt.hashSync("123456", +authConfig.rounds),
+      password: bcrypt.hashSync("12345678", +authConfig.rounds),
       roleId: 2,
     },
     ]
