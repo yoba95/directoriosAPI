@@ -57,7 +57,7 @@ async createSchool(req, res){
           
         }]
       }
- 
+
     );
     return res.status(200).json(school);
     } catch (error) {

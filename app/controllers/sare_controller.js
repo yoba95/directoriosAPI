@@ -2,8 +2,8 @@ const db = require('../models'); //prueba exitosa pero con difine
 module.exports = {
 async createSare(req, res) {
     
-    const {idSare, nameSare, nameJefeSare, telefono, email, longitud, latitud, localidadId, region } = req.body;
- 
+    const {idSare, nameSare, nameJefeSare, telefono, email, longitud, latitud, localidadId, regions } = req.body;
+
     try {
 
         const sare = await db.sare.create({
@@ -20,8 +20,8 @@ async createSare(req, res) {
     });
 
     //succesfull 
-    await sare.addRegion(region, { through: { selfGranted: false }});
-       
+    await sare.addRegion(regions, { through: { selfGranted: false }});
+      
     return res.status(200).json(sare);
     } catch (error) {
         console.log(error);
