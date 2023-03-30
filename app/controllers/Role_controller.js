@@ -29,7 +29,7 @@ async createRole(req, res) {
             res.json("El role "+ rol.name_role + " se ha añadido correctamente", rol )
 },
 
-//get role
+//get role prueba render
 
 async getRole(req, res) {
     let role = await db.role.findByPk(req.params.id);
